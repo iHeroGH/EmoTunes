@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'background.dart';
 import 'custom_input_field.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class LogInPage extends StatefulWidget {
+  const LogInPage({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpState();
+  State<LogInPage> createState() => _LogInState();
 }
 
-class _SignUpState extends State<SignUpPage>{
+class _LogInState extends State<LogInPage>{
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class _SignUpState extends State<SignUpPage>{
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              "Sign-Up",
+              "Log-In",
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold
@@ -30,7 +30,7 @@ class _SignUpState extends State<SignUpPage>{
             ),
             SizedBox(
               width: size.width * 0.8,
-              child: SignUpForm()
+              child: LogInForm()
             )
           ]
         )
@@ -39,8 +39,8 @@ class _SignUpState extends State<SignUpPage>{
   }
 }
 
-class SignUpForm extends StatelessWidget {
-  const SignUpForm({Key? key});
+class LogInForm extends StatelessWidget {
+  const LogInForm({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,27 +50,6 @@ class SignUpForm extends StatelessWidget {
         width: double.infinity,
         child: Column(
           children: [
-            Row(
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: dPadding, bottom: dPadding, right: 5),
-                    child: CustomInputField(
-                      hintText: "First Name",
-                      preIcon: Icons.account_circle
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: dPadding, bottom: dPadding),
-                    child: CustomInputField(hintText: "Last Initial", maxLength: 1),
-                  ),
-                ),
-              ],
-            ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: dPadding),
               child: CustomInputField(
@@ -96,7 +75,7 @@ class SignUpForm extends StatelessWidget {
                   backgroundColor: primaryColor,
                 ),
                 child: const Text(
-                  "Sign Up",
+                  "Log In",
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.white,
