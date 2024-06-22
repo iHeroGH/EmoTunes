@@ -15,6 +15,7 @@ class _AuthState extends State<AuthPage>{
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    TextEditingController authC = TextEditingController();
 
     return Scaffold(
       body: Background(
@@ -23,7 +24,7 @@ class _AuthState extends State<AuthPage>{
           children: <Widget>[
             SizedBox(
               width: size.width * 0.8,
-              child: AuthForm()
+              child: AuthForm(authC: authC)
             )
           ]
         )
@@ -33,7 +34,8 @@ class _AuthState extends State<AuthPage>{
 }
 
 class AuthForm extends StatelessWidget {
-  const AuthForm({Key? key});
+  final TextEditingController authC;
+  const AuthForm({super.key, required this.authC});
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +48,7 @@ class AuthForm extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: dPadding),
               child: CustomInputField(
+                controller: authC,
                 preIcon: Icons.key,
                 hintText: "Authentication Code",
                 maxLength: 6,

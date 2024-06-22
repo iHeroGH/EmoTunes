@@ -15,6 +15,10 @@ class _SignUpState extends State<SignUpPage>{
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    TextEditingController firstNameC = TextEditingController();
+    TextEditingController lastNameC = TextEditingController();
+    TextEditingController emailC = TextEditingController();
+    TextEditingController passwordC = TextEditingController();
 
     return Scaffold(
       body: Background(
@@ -23,7 +27,12 @@ class _SignUpState extends State<SignUpPage>{
           children: <Widget>[
             SizedBox(
               width: size.width * 0.8,
-              child: SignUpForm()
+              child: SignUpForm(
+                firstNameC: firstNameC,
+                lastNameC: lastNameC,
+                emailC: emailC,
+                passwordC: passwordC
+              )
             )
           ]
         )
@@ -33,7 +42,21 @@ class _SignUpState extends State<SignUpPage>{
 }
 
 class SignUpForm extends StatelessWidget {
-  const SignUpForm({Key? key});
+
+  final TextEditingController firstNameC;
+  final TextEditingController lastNameC;
+  final TextEditingController emailC;
+  final TextEditingController passwordC;
+
+  const SignUpForm(
+    {
+      super.key,
+      required this.firstNameC,
+      required this.lastNameC,
+      required this.emailC,
+      required this.passwordC,
+    }
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +74,7 @@ class SignUpForm extends StatelessWidget {
                     padding: const EdgeInsets.only(top: dPadding, bottom: dPadding, right: 5),
                     child: CustomInputField(
                       hintText: "First Name",
+                      controller: firstNameC,
                       preIcon: Icons.account_circle
                     ),
                   ),
@@ -59,7 +83,7 @@ class SignUpForm extends StatelessWidget {
                   flex: 1,
                   child: Padding(
                     padding: const EdgeInsets.only(top: dPadding, bottom: dPadding),
-                    child: CustomInputField(hintText: "Last Initial", maxLength: 1),
+                    child: CustomInputField(controller: lastNameC, hintText: "Last Initial", maxLength: 1),
                   ),
                 ),
               ],
@@ -68,12 +92,14 @@ class SignUpForm extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: dPadding),
               child: CustomInputField(
                 preIcon: Icons.email,
+                controller: emailC,
                 hintText: "Email Address",
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: dPadding),
               child: CustomInputField(
+                controller: passwordC,
                 preIcon: Icons.password,
                 postIcon: Icons.visibility,
                 postIconOpt: Icons.visibility_off,
@@ -84,7 +110,7 @@ class SignUpForm extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: dPadding),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () { signUpPressed(); },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: primaryColor,
                 ),
@@ -101,5 +127,12 @@ class SignUpForm extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void signUpPressed (){
+    print(firstNameC.text);
+    print(lastNameC.text);
+    print(emailC.text);
+    print(passwordC.text);
   }
 }

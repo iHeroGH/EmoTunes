@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class CustomInputField extends StatefulWidget {
   final String hintText;
+  final TextEditingController controller;
   final IconData? preIcon;
   final IconData? postIcon;
   final IconData? postIconOpt;
@@ -12,6 +13,7 @@ class CustomInputField extends StatefulWidget {
   const CustomInputField({
     super.key,
     required this.hintText,
+    required this.controller,
     this.preIcon,
     this.postIcon,
     this.postIconOpt,
@@ -37,6 +39,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: widget.controller,
       obscureText: !_isVisible,
       maxLength: _maxLength,
       decoration: InputDecoration(

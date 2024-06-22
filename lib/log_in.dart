@@ -15,6 +15,8 @@ class _LogInState extends State<LogInPage>{
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    TextEditingController emailC = TextEditingController();
+    TextEditingController passwordC = TextEditingController();
 
     return Scaffold(
       body: Background(
@@ -23,7 +25,7 @@ class _LogInState extends State<LogInPage>{
           children: <Widget>[
             SizedBox(
               width: size.width * 0.8,
-              child: LogInForm()
+              child: LogInForm(emailC: emailC, passwordC: passwordC)
             )
           ]
         )
@@ -33,7 +35,10 @@ class _LogInState extends State<LogInPage>{
 }
 
 class LogInForm extends StatelessWidget {
-  const LogInForm({Key? key});
+  final TextEditingController emailC;
+  final TextEditingController passwordC;
+
+  const LogInForm({super.key, required this.emailC, required this.passwordC});
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +52,7 @@ class LogInForm extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: dPadding),
               child: CustomInputField(
                 preIcon: Icons.email,
+                controller: emailC,
                 hintText: "Email Address",
               ),
             ),
@@ -57,6 +63,7 @@ class LogInForm extends StatelessWidget {
                 postIcon: Icons.visibility,
                 postIconOpt: Icons.visibility_off,
                 hintText: "Password",
+                controller: passwordC,
                 visibility: false,
               ),
             ),
