@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'background.dart';
 import 'custom_input_field.dart';
 
-class LogInPage extends StatefulWidget {
-  const LogInPage({super.key});
+class AuthPage extends StatefulWidget {
+  const AuthPage({super.key});
 
   @override
-  State<LogInPage> createState() => _LogInState();
+  State<AuthPage> createState() => _AuthState();
 }
 
-class _LogInState extends State<LogInPage>{
+class _AuthState extends State<AuthPage>{
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class _LogInState extends State<LogInPage>{
           children: <Widget>[
             SizedBox(
               width: size.width * 0.8,
-              child: LogInForm()
+              child: AuthForm()
             )
           ]
         )
@@ -32,8 +32,8 @@ class _LogInState extends State<LogInPage>{
   }
 }
 
-class LogInForm extends StatelessWidget {
-  const LogInForm({Key? key});
+class AuthForm extends StatelessWidget {
+  const AuthForm({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,18 +46,9 @@ class LogInForm extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: dPadding),
               child: CustomInputField(
-                preIcon: Icons.email,
-                hintText: "Email Address",
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: dPadding),
-              child: CustomInputField(
-                preIcon: Icons.password,
-                postIcon: Icons.visibility,
-                postIconOpt: Icons.visibility_off,
-                hintText: "Password",
-                visibility: false,
+                preIcon: Icons.key,
+                hintText: "Authentication Code",
+                maxLength: 6,
               ),
             ),
             Padding(
@@ -68,7 +59,7 @@ class LogInForm extends StatelessWidget {
                   backgroundColor: primaryColor,
                 ),
                 child: const Text(
-                  "Log In",
+                  "Authenticate",
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.white,

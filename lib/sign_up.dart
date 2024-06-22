@@ -21,13 +21,6 @@ class _SignUpState extends State<SignUpPage>{
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              "Sign-Up",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold
-              )
-            ),
             SizedBox(
               width: size.width * 0.8,
               child: SignUpForm()
