@@ -1,7 +1,10 @@
 import 'package:emotunes/constants.dart';
 import 'package:flutter/material.dart';
+
 import 'background.dart';
 import 'custom_input_field.dart';
+import 'communicator.dart';
+import 'authenticate.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -110,7 +113,7 @@ class SignUpForm extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: dPadding),
               child: ElevatedButton(
-                onPressed: () { signUpPressed(); },
+                onPressed: () async { signUpPressed(context); },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: primaryColor,
                 ),
@@ -129,10 +132,27 @@ class SignUpForm extends StatelessWidget {
     );
   }
 
-  void signUpPressed (){
-    print(firstNameC.text);
-    print(lastNameC.text);
-    print(emailC.text);
-    print(passwordC.text);
+  void signUpPressed(BuildContext context) async {
+    Response resp = await Communicator.performSignUp(
+      emailC.text, passwordC.text, firstNameC.text, lastNameC.text
+    );
+
+    if (!context.mounted) return;
+    if (!resp.isSuccess){
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          duration: const Duration(seconds: 5),
+          content: Text(resp.error)
+        )
+      );
+      return;
+    }
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => AuthPage(emailAddress: emailC.text)
+      )
+    );
   }
 }

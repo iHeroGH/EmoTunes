@@ -1,7 +1,9 @@
 import 'package:emotunes/constants.dart';
 import 'package:flutter/material.dart';
+
 import 'background.dart';
 import 'custom_input_field.dart';
+import 'communicator.dart';
 
 class LogInPage extends StatefulWidget {
   const LogInPage({super.key});
@@ -70,7 +72,7 @@ class LogInForm extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: dPadding),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () async { logInPressed(context); },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: primaryColor,
                 ),
@@ -87,5 +89,24 @@ class LogInForm extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<bool> logInPressed(BuildContext context) async{
+    Response resp = await Communicator.performLogin(
+      emailC.text, passwordC.text
+    );
+
+    if (!resp.isSuccess){
+      if (!context.mounted) return false;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          duration: const Duration(seconds: 5),
+          content: Text(resp.error)
+        )
+      );
+      return false;
+    }
+
+    return true;
   }
 }
