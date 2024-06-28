@@ -1,4 +1,5 @@
 import 'package:emotunes/constants.dart';
+import 'package:emotunes/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -7,7 +8,9 @@ import 'communicator.dart';
 import 'custom_input_field.dart';
 
 class SongSearchPage extends StatefulWidget {
-  const SongSearchPage({super.key});
+  final bool signUpHidden;
+
+  const SongSearchPage({super.key, required this.signUpHidden});
 
   @override
   State<SongSearchPage> createState() => _SearchSongState();
@@ -53,6 +56,18 @@ class _SearchSongState extends State<SongSearchPage> {
     TextEditingController sentimentC = TextEditingController();
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+            Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const SignUpPage()
+            )
+          );
+        },
+        label: const Text("Sign Up")
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
       body: Background(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

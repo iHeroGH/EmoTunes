@@ -1,9 +1,11 @@
 import 'package:emotunes/constants.dart';
+import 'package:emotunes/song_search.dart';
 import 'package:flutter/material.dart';
 
 import 'background.dart';
 import 'custom_input_field.dart';
 import 'communicator.dart';
+import 'sign_up.dart';
 
 class LogInPage extends StatefulWidget {
   const LogInPage({super.key});
@@ -85,6 +87,22 @@ class LogInForm extends StatelessWidget {
                 ),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.symmetric(),
+              child: ElevatedButton(
+                onPressed: () async { askSignUp(context); },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: primaryColor,
+                ),
+                child: const Text(
+                  "Don't have an account?",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -96,8 +114,8 @@ class LogInForm extends StatelessWidget {
       emailC.text, passwordC.text
     );
 
+    if (!context.mounted) return;
     if (!resp.isSuccess){
-      if (!context.mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           duration: const Duration(seconds: 5),
@@ -107,6 +125,22 @@ class LogInForm extends StatelessWidget {
       return;
     }
 
-    return;
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SongSearchPage(signUpHidden: true)
+      )
+    );
+  }
+
+   void askSignUp(BuildContext context) {
+    if (!context.mounted) return;
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const SignUpPage()
+      )
+    );
   }
 }

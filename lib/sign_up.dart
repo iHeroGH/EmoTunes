@@ -1,4 +1,5 @@
 import 'package:emotunes/constants.dart';
+import 'package:emotunes/log_in.dart';
 import 'package:flutter/material.dart';
 
 import 'background.dart';
@@ -111,7 +112,7 @@ class SignUpForm extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: dPadding),
+              padding: const EdgeInsets.symmetric(),
               child: ElevatedButton(
                 onPressed: () async { signUpPressed(context); },
                 style: ElevatedButton.styleFrom(
@@ -119,6 +120,22 @@ class SignUpForm extends StatelessWidget {
                 ),
                 child: const Text(
                   "Sign Up",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(),
+              child: ElevatedButton(
+                onPressed: () async { askLogin(context); },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: primaryColor,
+                ),
+                child: const Text(
+                  "Already have an account?",
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.white,
@@ -152,6 +169,17 @@ class SignUpForm extends StatelessWidget {
       context,
       MaterialPageRoute(
         builder: (context) => AuthPage(emailAddress: emailC.text)
+      )
+    );
+  }
+
+  void askLogin(BuildContext context) {
+    if (!context.mounted) return;
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LogInPage()
       )
     );
   }
