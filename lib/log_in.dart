@@ -91,22 +91,22 @@ class LogInForm extends StatelessWidget {
     );
   }
 
-  Future<bool> logInPressed(BuildContext context) async{
+  void logInPressed(BuildContext context) async{
     Response resp = await Communicator.performLogin(
       emailC.text, passwordC.text
     );
 
     if (!resp.isSuccess){
-      if (!context.mounted) return false;
+      if (!context.mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           duration: const Duration(seconds: 5),
           content: Text(resp.error)
         )
       );
-      return false;
+      return;
     }
 
-    return true;
+    return;
   }
 }

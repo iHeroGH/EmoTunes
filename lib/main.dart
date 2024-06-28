@@ -1,5 +1,5 @@
+import 'package:emotunes/song_search.dart';
 import 'package:flutter/material.dart';
-import 'sign_up.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const SignUpPage(),
+      home: const SongSearchPage(),
     );
   }
 }
