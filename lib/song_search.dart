@@ -56,7 +56,7 @@ class _SearchSongState extends State<SongSearchPage> {
     TextEditingController sentimentC = TextEditingController();
 
     return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(
+      floatingActionButton: widget.signUpHidden ? null : FloatingActionButton.extended(
         onPressed: () {
             Navigator.push(
             context,
